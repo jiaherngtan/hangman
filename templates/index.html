@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="/static/styles.css" rel="stylesheet">
+    <title>Hangman</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Hangman</h1>
+    </div>
+    <div class="container">
+        <p>Welcome to the game Hangman!</p>
+        <p>I am thinking of a word that is {{ length }} letters long.</p>
+        <p>You have {{ guesses }} guesses left.</p>
+        <p>{{ update }}</p>
+        <h1>{{ word }}</h1>
+
+        {% if status %}
+        {% for letter in letters %}
+        <form action="/" method="post">
+            <input name="letter" type="hidden" value="{{ letter }}">
+            <button type="submit">{{ letter }}</button>
+        </form>
+        {% endfor %}
+        {% endif %}
+
+        <br><br>
+        <form action="/restart" method="get">
+            <button type="submit">Restart</button>
+        </form>
+    </div>
+</body>
+
+</html>
