@@ -77,7 +77,7 @@ def restart():
     return redirect("/")
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def index():
     global status
     global guesses
