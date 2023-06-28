@@ -57,6 +57,7 @@ lettersGuessed = []
 status = True
 guesses = 8
 update = ""
+pic = 0
 
 
 @app.route("/restart")
@@ -67,6 +68,7 @@ def restart():
     global status
     global guesses
     global update
+    global pic
 
     secretWord = chooseWord(wordlist).lower()
     length = len(secretWord)
@@ -74,6 +76,7 @@ def restart():
     status = True
     guesses = 8
     update = ""
+    pic = 0
     return redirect("/")
 
 
@@ -82,6 +85,7 @@ def index():
     global status
     global guesses
     global update
+    global pic
     if request.method == "GET":
         # display
         letters = getAvailableLetters(lettersGuessed)
@@ -95,7 +99,8 @@ def index():
                            guesses=guesses,
                            update=update,
                            word=word,
-                           letters=letters)
+                           letters=letters,
+                           pic=pic)
     else:
         # display
         letters = getAvailableLetters(lettersGuessed)
@@ -109,6 +114,7 @@ def index():
             update = "Good guess!"
         else:
             guesses -= 1
+            pic += 1
             update = "Oops! That letter is not in my word."
             if guesses == 0:
                 update = "Sorry, you ran out of guesses."

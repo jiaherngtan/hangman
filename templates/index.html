@@ -5,32 +5,41 @@
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="/static/styles.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <title>Hangman</title>
 </head>
 
 <body>
-    <div class="header">
-        <h1>Hangman</h1>
-    </div>
-    <div class="container">
-        <p>Welcome to the game Hangman!</p>
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 header h1">Hangman</span>
+        </div>
+    </nav>
+    <div class="container text-center mt-3">
+        <!-- <h4 class="py-3">Welcome to the game Hangman!</h4> -->
         <p>I am thinking of a word that is {{ length }} letters long.</p>
         <p>You have {{ guesses }} guesses left.</p>
         <p>{{ update }}</p>
         <h1>{{ word }}</h1>
 
+        <div>
+            <img src="/static/{{ pic }}.jpeg" class="img-fluid">
+        </div>
+
         {% if status %}
         {% for letter in letters %}
         <form action="/" method="post">
             <input name="letter" type="hidden" value="{{ letter }}">
-            <button type="submit">{{ letter }}</button>
+            <button class="btn btn-primary m-lg-0 m-1" type="submit">{{ letter }}</button>
         </form>
         {% endfor %}
         {% endif %}
-
-        <br><br>
         <form action="/restart" method="get">
-            <button type="submit">Restart</button>
+            <button class="btn btn-secondary" type="submit">Restart</button>
         </form>
     </div>
 </body>
